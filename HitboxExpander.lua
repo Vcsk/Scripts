@@ -8,7 +8,7 @@ Credits to me
 
 local CoreGui = game:GetService("StarterGui")
 
-local Library = loadstring(game:HttpGet("loadstring(game:HttpGet("https://raw.githubusercontent.com/Vcsk/UI-Library/main/Source/MyUILib(Unamed).lua"))();
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Vcsk/UI-Library/main/Source/MyUILib(Unamed).lua"))();
 local Window = Library:Window("Hitbox Expander")
 
 if game:GetService("CoreGui"):FindFirstChild("ToggleGui_Test") then
