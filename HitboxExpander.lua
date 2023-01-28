@@ -799,6 +799,24 @@ PlayerTab:Toggle("Status:", function(state)
     end
 end)
 
+PlayerTab:Toggle("Noclip", function(s)
+    getgenv().Noclip = s
+    while Noclip == true do
+        game:GetService("RunService").Stepped:wait()
+        game.Players.LocalPlayer.Character.Head.CanCollide = false
+        game.Players.LocalPlayer.Character.Torso.CanCollide = false
+    end
+end)
+
+PlayerTab:Toggle("Infinite Jump", function(s)
+getgenv().InfJ = s
+    game:GetService("UserInputService").JumpRequest:connect(function()
+        if InfJ == true then
+            game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+        end
+    end)
+end)
+
 PlayerTab:Button("Rejoin", function()
     game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
 end)
