@@ -118,6 +118,7 @@ PlayerTab:Toggle("Status:", function(state)
     end
 end)
 
+--[[
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/SimpleHighlightESP.lua"))()
 function ClearESP(espname)
 	for _,v in pairs(game.CoreGui:GetChildren()) do
@@ -161,6 +162,7 @@ while ESPName do wait(10)
     end
 end
 end)
+]]
 
 PlayerTab:Toggle("Noclip", function(s)
     getgenv().Noclip = s
