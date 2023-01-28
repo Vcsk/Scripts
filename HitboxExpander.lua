@@ -103,7 +103,7 @@ PlayerTab:Toggle("Status:", function(state)
             Text = "on";
             Duration = 5;
         })
-        while wait() do
+        while EnabledWJ == true do wait(1)
             pcall(function()
                 game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = Walkspeed
                 game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = Jumppower
