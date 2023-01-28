@@ -176,7 +176,8 @@ local function esp(p,cr)
 			text.Text = "[ "..p.Name.." ]"
 			text.Visible = true
 		elseif state == false then
-			dc()
+			text.Text = ""
+			text.Visible = false
 		else
 			text.Visible = false
 		end
