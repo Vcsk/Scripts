@@ -84,45 +84,26 @@ HomeTab:Toggle("Enemy Only", function(state)
 end)
 
 PlayerTab:Slider("WalkSpeed", 16,500, function(value)
-    getgenv().Walkspeed = value
+    pcall(function()
+        game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = value
+    end)
 end)
 
 PlayerTab:Slider("JumpPower", 50,1000, function(value)
-    getgenv().Jumppower = value
+    pcall(function()
+        getgenv().Jumppower = value
+    end)
 end)
 
 PlayerTab:Slider("Fov", 70,120, function(v)
      game.Workspace.CurrentCamera.FieldOfView = v
 end)
 
-PlayerTab:Toggle("Status:", function(state)
-    getgenv().EnabledWJ = state
-    if EnabledWJ == true then
-        CoreGui:SetCore("SendNotification", {
-            Title = "Status:";
-            Text = "on";
-            Duration = 5;
-        })
-        while EnabledWJ == true do wait(1)
-            pcall(function()
-                game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = Walkspeed
-                game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = Jumppower
-            end)
-        end
-    else
-        CoreGui:SetCore("SendNotification", {
-            Title = "Status:";
-            Text = "off";
-            Duration = 5;
-        })
-    end
-end)
-
 PlayerTab:Toggle("(Everyone) ESP Name", function(state)
     getgenv().ESPName = state
 end)
 
-PlayerTab:Toggle("(Enemy Only) ESP Name", function(state)
+PlayerTab:Toggle("(Enemy Only) ESP Name (soon!)", function(state)
     print("SOON")
 end)
 
