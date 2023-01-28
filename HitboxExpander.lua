@@ -688,6 +688,7 @@ function Library:Window(title)
 	return Tabs
 end
 
+local CoreGui = game:GetService("StarterGui")
 
 local Window = Library:Window("Hitbox Expander")
 
@@ -718,7 +719,8 @@ Toggle.MouseButton1Click:connect(function()
     Library:ToggleUI()
 end)
 
-local HomeTab= Window:Tab("Home","rbxassetid://10888331510")
+local HomeTab = Window:Tab("Home","rbxassetid://10888331510")
+local PlayerTab = Window:Tab("LocalPlayer","")
 
 HomeTab:Slider("Hitbox Size:", 0,500, function(value)
 	getgenv().HitboxSize = value
@@ -760,4 +762,43 @@ HomeTab:Toggle("Enemy Only", function(state)
 			end
 		end
 	end)
+end)
+
+PlayerTab:Slider("WalkSpeed", 16,500, function(value)
+    getgenv().Walkspeed = value
+end)
+
+PlayerTab:Slider("JumpPower", 50,1000, function(value)
+    getgenv().Jumppower = value
+end)
+
+PlayerTab:Slider("Fov", 70,120, function(v)
+     game.Workspace.CurrentCamera.FieldOfView = v
+end)
+
+PlayerTab:Toggle("Status:", function(state)
+    getgenv().EnabledWJ = state
+    if EnabledWJ == true then
+        CoreGui:SetCore("SendNotification", {
+            Title = "Status:";
+            Text = "on";
+            Duration = 5;
+        })
+        while wait() do
+            pcall(function()
+                game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = Walkspeed
+                game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = Jumppower
+            end)
+        end
+    else
+        CoreGui:SetCore("SendNotification", {
+            Title = "Status:";
+            Text = "off";
+            Duration = 5;
+        })
+    end
+end)
+
+PlayerTab:Button("Rejoin", function()
+    game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
 end)
