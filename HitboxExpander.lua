@@ -801,10 +801,23 @@ end)
 
 PlayerTab:Toggle("Noclip", function(s)
     getgenv().Noclip = s
-    while Noclip == true do
-        game:GetService("RunService").Stepped:wait()
-        game.Players.LocalPlayer.Character.Head.CanCollide = false
-        game.Players.LocalPlayer.Character.Torso.CanCollide = false
+    if Noclip == true then
+        CoreGui:SetCore("SendNotification", {
+            Title = "Noclip:";
+            Text = "on";
+            Duration = 5;
+        })
+        while Noclip == true do
+            game:GetService("RunService").Stepped:wait()
+            game.Players.LocalPlayer.Character.Head.CanCollide = false
+            game.Players.LocalPlayer.Character.Torso.CanCollide = false
+        end
+    else
+        CoreGui:SetCore("SendNotification", {
+            Title = "Noclip:";
+            Text = "off";
+            Duration = 5;
+        })
     end
 end)
 
