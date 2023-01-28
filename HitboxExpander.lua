@@ -118,6 +118,50 @@ PlayerTab:Toggle("Status:", function(state)
     end
 end)
 
+local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/SimpleHighlightESP.lua"))()
+function ClearESP(espname)
+	for _,v in pairs(game.CoreGui:GetChildren()) do
+		if v.Name == espname and v:isA('BillBoardGui')
+			v:Destroy()
+		end
+	end
+end
+PlayerTab:Toggle("(Everyone) ESP Name", function(state)
+    ESP:ClearESP();
+    getgenv().ESPName = state;
+while ESPName do wait(10)
+    for i, v in ipairs(Players:GetPlayers()) do
+        if v ~= game:GetService("Players").LocalPlayer then
+            v.CharacterAdded:Connect(function(Char)
+                ESP:AddNameTag(Char)
+            end)
+
+            if v.Character then
+                ESP:AddNameTag(v.Character)
+            end
+        end
+    end
+end
+end)
+
+PlayerTab:Toggle("(Enemy Only) ESP Name", function(state)
+    ESP:ClearESP();
+    getgenv().ESPName = state;
+while ESPName do wait(10)
+    for i, v in ipairs(Players:GetPlayers()) do
+        if game:GetService('Players').LocalPlayer.Team ~= v.Team then
+            v.CharacterAdded:Connect(function(Char)
+                ESP:AddNameTag(Char)
+            end)
+
+            if v.Character then
+                ESP:AddNameTag(v.Character)
+            end
+        end
+    end
+end
+end)
+
 PlayerTab:Toggle("Noclip", function(s)
     getgenv().Noclip = s
     if Noclip == true then
@@ -144,7 +188,7 @@ PlayerTab:Toggle("Infinite Jump", function(s)
 getgenv().InfJ = s
     game:GetService("UserInputService").JumpRequest:connect(function()
         if InfJ == true then
-            game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+            game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
         end
     end)
 end)
