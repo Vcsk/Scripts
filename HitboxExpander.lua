@@ -39,7 +39,7 @@ Toggle.MouseButton1Click:connect(function()
 end)
 
 local HomeTab = Window:Tab("Home","rbxassetid://10888331510")
-local PlayerTab = Window:Tab("LocalPlayer","rbxassetid://12296135476")
+local PlayerTab = Window:Tab("Players","rbxassetid://12296135476")
 
 HomeTab:Slider("Hitbox Size:", 0,500, function(value)
 	getgenv().HitboxSize = value
