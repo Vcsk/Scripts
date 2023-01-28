@@ -119,6 +119,48 @@ PlayerTab:Toggle("Status:", function(state)
 end)
 
 PlayerTab:Toggle("(Everyone) ESP Name", function(state)
+    getgenv().ESPName = state
+end)
+
+PlayerTab:Toggle("(Enemy Only) ESP Name", function(state)
+    print("SOON")
+end)
+
+PlayerTab:Toggle("Noclip", function(s)
+    getgenv().Noclip = s
+    if Noclip == true then
+        CoreGui:SetCore("SendNotification", {
+            Title = "Noclip:";
+            Text = "on";
+            Duration = 5;
+        })
+        while Noclip == true do
+            game:GetService("RunService").Stepped:wait()
+            game.Players.LocalPlayer.Character.Head.CanCollide = false
+            game.Players.LocalPlayer.Character.Torso.CanCollide = false
+        end
+    else
+        CoreGui:SetCore("SendNotification", {
+            Title = "Noclip:";
+            Text = "off";
+            Duration = 5;
+        })
+    end
+end)
+
+PlayerTab:Toggle("Infinite Jump", function(s)
+getgenv().InfJ = s
+    game:GetService("UserInputService").JumpRequest:connect(function()
+        if InfJ == true then
+            game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+        end
+    end)
+end)
+
+PlayerTab:Button("Rejoin", function()
+    game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+end)
+
 local c = workspace.CurrentCamera
 local ps = game:GetService("Players")
 local lp = ps.LocalPlayer
@@ -171,13 +213,10 @@ local function esp(p,cr)
 
 	conection = rs.RenderStepped:Connect(function()
 		local hrp_pos,hrp_onscreen = c:WorldToViewportPoint(hrp.Position)
-		if hrp_onscreen then
+		if hrp_onscreen and ESPName == true then
 			text.Position = Vector2.new(hrp_pos.X, hrp_pos.Y - 27)
 			text.Text = "[ "..p.Name.." ]"
 			text.Visible = true
-		elseif state == false then
-			text.Text = ""
-			text.Visible = false
 		else
 			text.Visible = false
 		end
@@ -200,43 +239,3 @@ for i,p in next, ps:GetPlayers() do
 end
 
 ps.PlayerAdded:Connect(p_added)
-end)
-
-PlayerTab:Toggle("(Enemy Only) ESP Name", function(state)
-    print("SOON")
-end)
-
-PlayerTab:Toggle("Noclip", function(s)
-    getgenv().Noclip = s
-    if Noclip == true then
-        CoreGui:SetCore("SendNotification", {
-            Title = "Noclip:";
-            Text = "on";
-            Duration = 5;
-        })
-        while Noclip == true do
-            game:GetService("RunService").Stepped:wait()
-            game.Players.LocalPlayer.Character.Head.CanCollide = false
-            game.Players.LocalPlayer.Character.Torso.CanCollide = false
-        end
-    else
-        CoreGui:SetCore("SendNotification", {
-            Title = "Noclip:";
-            Text = "off";
-            Duration = 5;
-        })
-    end
-end)
-
-PlayerTab:Toggle("Infinite Jump", function(s)
-getgenv().InfJ = s
-    game:GetService("UserInputService").JumpRequest:connect(function()
-        if InfJ == true then
-            game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
-        end
-    end)
-end)
-
-PlayerTab:Button("Rejoin", function()
-    game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
-end)
