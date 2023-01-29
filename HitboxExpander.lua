@@ -20,7 +20,7 @@ local Players = game:GetService("Players")
 --// UI \\--
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Vcsk/UI-Library/main/Source/MyUILib(Unamed).lua"))();
-local Window = Library:Window("Hitbox Expander")
+local Window = Library:Create("Hitbox Expander")
 
 if game:GetService("CoreGui"):FindFirstChild("ToggleGui_Test") then
     game:GetService("CoreGui"):FindFirstChild("ToggleGui_Test")
