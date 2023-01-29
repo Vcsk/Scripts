@@ -103,7 +103,7 @@ end)
 
 PlayerTab:Slider("JumpPower", 50,1000, function(value)
     pcall(function()
-        getgenv().Jumppower = value
+        game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = value
     end)
 end)
 
