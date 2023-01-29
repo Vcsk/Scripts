@@ -152,7 +152,7 @@ VisualTab:Toggle("(Everyone) ESP Name", function(state)
 end)
 
 VisualTab:Toggle("(Enemy Only) ESP Name (soon!)", function(state)
-    print("SOON")
+    getgenv().TeamCheckkk = state
 end)
 
 local c = workspace.CurrentCamera
@@ -209,7 +209,7 @@ local function esp(p,cr)
 		local hrp_pos,hrp_onscreen = c:WorldToViewportPoint(hrp.Position)
 		if hrp_onscreen and ESPName == true then
 			text.Position = Vector2.new(hrp_pos.X, hrp_pos.Y - 27)
-			text.Text = "[ "..p.Name.." ]"
+			text.Text = p.DisplayName.." (@"..p.Name..")"
 			text.Visible = true
 		else
 			text.Visible = false
