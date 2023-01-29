@@ -113,24 +113,13 @@ end)
 
 PlayerTab:Toggle("Noclip", function(s)
     getgenv().Noclip = s
-    if Noclip == true then
-        CoreGui:SetCore("SendNotification", {
-            Title = "Noclip:";
-            Text = "on";
-            Duration = 5;
-        })
-        while Noclip == true do
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if Noclip == true then
             game:GetService("RunService").Stepped:wait()
             game.Players.LocalPlayer.Character.Head.CanCollide = false
             game.Players.LocalPlayer.Character.Torso.CanCollide = false
         end
-    else
-        CoreGui:SetCore("SendNotification", {
-            Title = "Noclip:";
-            Text = "off";
-            Duration = 5;
-        })
-    end
+    end)
 end)
 
 PlayerTab:Toggle("Infinite Jump", function(s)
@@ -152,21 +141,6 @@ end)
 
 VisualTab:Toggle("Character Highlight", function(state)
 getgenv().enabled = state --Toggle on/off
-
-if getgenv().enabled == true then
-    CoreGui:SetCore("SendNotification", {
-        Title = "Character Highlight:";
-        Text = "on";
-        Duration = 5;
-    })
-else
-    CoreGui:SetCore("SendNotification", {
-        Title = "Character Highlight:";
-        Text = "off";
-        Duration = 5;
-    })
-end
-
 getgenv().filluseteamcolor = true --Toggle fill color using player team color on/off
 getgenv().outlineuseteamcolor = true --Toggle outline color using player team color on/off
 getgenv().fillcolor = Color3.new(0, 0, 0) --Change fill color, no need to edit if using team color
@@ -174,7 +148,7 @@ getgenv().outlinecolor = Color3.new(1, 1, 1) --Change outline color, no need to 
 getgenv().filltrans = 0.5 --Change fill transparency
 getgenv().outlinetrans = 0.5 --Change outline transparency
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/zntly/highlight-esp/main/esp.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Vcsk/Scripts/main/Highligh-ESP.lua"))()
 end)
 
 VisualTab:Toggle("(Everyone) ESP Name", function(state)
