@@ -4,9 +4,20 @@ Open source
 Made by !vcsk0#1516
 Credits to me
 
+Credits to the Owner, Who Made The ESP Script
+
 ]]
 
+--// Services \\--
+
 local CoreGui = game:GetService("StarterGui")
+local Players = game:GetService("Players")
+
+--//\\--
+
+
+
+--// UI \\--
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Vcsk/UI-Library/main/Source/MyUILib(Unamed).lua"))();
 local Window = Library:Window("Hitbox Expander")
@@ -40,6 +51,7 @@ end)
 
 local HomeTab = Window:Tab("Home","rbxassetid://10888331510")
 local PlayerTab = Window:Tab("Players","rbxassetid://12296135476")
+local VisualTab = Window:Tab("Visuals","rbxassetid://12308581351")
 
 HomeTab:Slider("Hitbox Size:", 0,500, function(value)
 	getgenv().HitboxSize = value
@@ -99,14 +111,6 @@ PlayerTab:Slider("Fov", 70,120, function(v)
      game.Workspace.CurrentCamera.FieldOfView = v
 end)
 
-PlayerTab:Toggle("(Everyone) ESP Name", function(state)
-    getgenv().ESPName = state
-end)
-
-PlayerTab:Toggle("(Enemy Only) ESP Name (soon!)", function(state)
-    print("SOON")
-end)
-
 PlayerTab:Toggle("Noclip", function(s)
     getgenv().Noclip = s
     if Noclip == true then
@@ -140,6 +144,45 @@ end)
 
 PlayerTab:Button("Rejoin", function()
     game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+end)
+
+VisualTab:Slider("Nothing (TESTING)", 0,69420, function(value)
+    print(value)
+end)
+
+VisualTab:Toggle("Character Highlight", function(state)
+getgenv().enabled = state --Toggle on/off
+
+if getgenv().enabled == true then
+    CoreGui:SetCore("SendNotification", {
+        Title = "Character Highlight:";
+        Text = "on";
+        Duration = 5;
+    })
+else
+    CoreGui:SetCore("SendNotification", {
+        Title = "Character Highlight:";
+        Text = "off";
+        Duration = 5;
+    })
+end
+
+getgenv().filluseteamcolor = true --Toggle fill color using player team color on/off
+getgenv().outlineuseteamcolor = true --Toggle outline color using player team color on/off
+getgenv().fillcolor = Color3.new(0, 0, 0) --Change fill color, no need to edit if using team color
+getgenv().outlinecolor = Color3.new(1, 1, 1) --Change outline color, no need to edit if using team color
+getgenv().filltrans = 0.5 --Change fill transparency
+getgenv().outlinetrans = 0.5 --Change outline transparency
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/zntly/highlight-esp/main/esp.lua"))()
+end)
+
+VisualTab:Toggle("(Everyone) ESP Name", function(state)
+    getgenv().ESPName = state
+end)
+
+VisualTab:Toggle("(Enemy Only) ESP Name (soon!)", function(state)
+    print("SOON")
 end)
 
 local c = workspace.CurrentCamera
