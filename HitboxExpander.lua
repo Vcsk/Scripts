@@ -95,6 +95,8 @@ HomeTab:Toggle("Enemy Only", function(state)
 	end)
 end)
 
+HomeTab:InfoLabel("To turn off hitbox, turn on Everyone or Enemy Only then set hitbox size to 0, after that just turn off Everyone or Enemy Only back.")
+
 PlayerTab:Slider("WalkSpeed", 16,500, function(value)
     pcall(function()
         game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = value
