@@ -135,10 +135,6 @@ PlayerTab:Button("Rejoin", function()
     game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
 end)
 
-VisualTab:Slider("Nothing (TESTING)", 0,69420, function(value)
-    print(value)
-end)
-
 VisualTab:Toggle("Character Highlight", function(state)
 getgenv().enabled = state --Toggle on/off
 getgenv().filluseteamcolor = true --Toggle fill color using player team color on/off
