@@ -40,6 +40,7 @@ Toggle.Position = UDim2.new(0, 0, 0.454706937, 0)
 Toggle.Size = UDim2.new(0.0650164187, 0, 0.0888099447, 0)
 Toggle.Font = Enum.Font.SourceSans
 Toggle.Text = "Toggle"
+Toggle.TextScaled = true
 Toggle.TextColor3 = Color3.fromRGB(128, 187, 219)
 Toggle.TextSize = 24.000
 Toggle.TextXAlignment = Enum.TextXAlignment.Left
