@@ -58,6 +58,15 @@ HomeTab:Slider("Hitbox Size:", 0,500, function(value)
 	getgenv().HitboxSize = value
 end)
 
+HomeTab:TextBox("Hitbox Transparency", function(number)
+    getgenv().HitboxTransparency = number
+    if HitboxTransparency == "y" then
+        getgenv().HitboxTransparency = 0.7
+    else
+        getgenv().HitboxTransparency = number
+    end
+end)
+
 HomeTab:Toggle("Everyone", function(state)
 	getgenv().HitboxStatus = state
     game:GetService('RunService').RenderStepped:connect(function()
@@ -66,9 +75,21 @@ HomeTab:Toggle("Everyone", function(state)
 				if v.Name ~= game:GetService('Players').LocalPlayer.Name then
 					pcall(function()
 						v.Character.HumanoidRootPart.Size = Vector3.new(HitboxSize,HitboxSize,HitboxSize)
-						v.Character.HumanoidRootPart.Transparency = 0.7
+						v.Character.HumanoidRootPart.Transparency = HitboxTransparency
 						v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really black")
 						v.Character.HumanoidRootPart.Material = "Neon"
+						v.Character.HumanoidRootPart.CanCollide = false
+					end)
+				end
+			end
+		else
+		    for i,v in next, game:GetService('Players'):GetPlayers() do
+				if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+					pcall(function()
+						v.Character.HumanoidRootPart.Size = Vector3.new(2,2,1)
+						v.Character.HumanoidRootPart.Transparency = 1
+						v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Medium stone grey")
+						v.Character.HumanoidRootPart.Material = "Plastic"
 						v.Character.HumanoidRootPart.CanCollide = false
 					end)
 				end
@@ -85,9 +106,21 @@ HomeTab:Toggle("Enemy Only", function(state)
 				if game:GetService('Players').LocalPlayer.Team ~= v.Team then
 					pcall(function()
 						v.Character.HumanoidRootPart.Size = Vector3.new(HitboxSize,HitboxSize,HitboxSize)
-						v.Character.HumanoidRootPart.Transparency = 0.7
+						v.Character.HumanoidRootPart.Transparency = HitboxTransparency
 						v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really black")
 						v.Character.HumanoidRootPart.Material = "Neon"
+						v.Character.HumanoidRootPart.CanCollide = false
+					end)
+				end
+			end
+		else
+		    for i,v in next, game:GetService('Players'):GetPlayers() do
+				if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+					pcall(function()
+						v.Character.HumanoidRootPart.Size = Vector3.new(2,2,1)
+						v.Character.HumanoidRootPart.Transparency = 1
+						v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Medium stone grey")
+						v.Character.HumanoidRootPart.Material = "Plastic"
 						v.Character.HumanoidRootPart.CanCollide = false
 					end)
 				end
@@ -95,8 +128,6 @@ HomeTab:Toggle("Enemy Only", function(state)
 		end
 	end)
 end)
-
-HomeTab:InfoLabel("To turn off hitbox, turn on Everyone or Enemy Only then set hitbox size to 0, after that just turn off Everyone or Enemy Only back.")
 
 PlayerTab:Slider("WalkSpeed", 16,500, function(value)
     getgenv().Walkspeed = value
