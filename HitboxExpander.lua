@@ -98,12 +98,14 @@ end)
 HomeTab:InfoLabel("To turn off hitbox, turn on Everyone or Enemy Only then set hitbox size to 0, after that just turn off Everyone or Enemy Only back.")
 
 PlayerTab:Slider("WalkSpeed", 16,500, function(value)
+    getgenv().Walkspeed = value
     pcall(function()
         game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = value
     end)
 end)
 
 PlayerTab:Slider("JumpPower", 50,1000, function(value)
+    getgenv().Jumppower = value
     pcall(function()
         game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = value
     end)
@@ -111,6 +113,18 @@ end)
 
 PlayerTab:Slider("Fov", 70,120, function(v)
      game.Workspace.CurrentCamera.FieldOfView = v
+end)
+
+PlayerTab:Toggle("Loop WalkSpeed/JumpPower", function(state)
+    getgenv().loopWJ = state
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if loopWJ == true then
+            pcall(function()
+                game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = Walkspeed
+                game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = Jumppower
+            end)
+        end
+    end)
 end)
 
 PlayerTab:Toggle("Noclip", function(s)
