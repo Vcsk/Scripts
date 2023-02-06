@@ -1,3 +1,5 @@
+--// Made by !vcsk0#1516 \\--
+
 local input = game:GetService("UserInputService")
 local lplayer = game:GetService('Players').LocalPlayer
 
