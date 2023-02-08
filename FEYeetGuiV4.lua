@@ -269,3 +269,6 @@ GOTO.MouseButton1Click:Connect(function()
 		game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame
 	end)
 end)
+
+notif("FE Yeet Gui V4","Loaded!",5)
+notif("FE Yeet Gui V4","Made by !vcsk0#1516",6)
