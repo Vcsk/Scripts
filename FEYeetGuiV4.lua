@@ -9,6 +9,14 @@ you can use but credits to me
 local input = game:GetService("UserInputService")
 local lplayer = game:GetService('Players').LocalPlayer
 
+function notif(title, text, dur)
+	game:FindService("StarterGui"):SetCore("SendNotification", {
+			Title = title,
+			Text = text,
+			Duration = dur
+	})
+end
+
 local yeeting = false
 function GetPlayer(String)
 	local Found = {}
