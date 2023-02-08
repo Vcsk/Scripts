@@ -224,9 +224,9 @@ STOPYEETING.MouseButton1Click:Connect(function()
 end)
 
 GOTO.MouseButton1Click:Connect(function()
-	local target = Target.Text
+	local target = unpack(GetPlayer(Target.Text)).Character
 	
 	pcall(function()
-		game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService'Players'[target].Character.HumanoidRootPart.CFrame
+		game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame
 	end)
 end)
