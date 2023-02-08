@@ -207,6 +207,19 @@ function ShrinkName()
 end
 ShrinkName()
 
+function view(plr)
+    wait()
+    if game.Players:FindFirstChild(plr) then
+        if game.Players[plr].Character then
+            game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = game.Players:FindFirstChild(plr).Character.HumanoidRootPart
+        else
+            VIEW.Text = 'VIEW'
+        end
+    else
+        VIEW.Text = 'VIEW'
+    end
+end
+
 YEET.MouseButton1Click:Connect(function()
 	local target = unpack(GetPlayer(Target.Text)).Character
 
@@ -235,6 +248,18 @@ STOPYEETING.MouseButton1Click:Connect(function()
 		game:GetService'Players'.LocalPlayer.Character.Humanoid.PlatformStand = false
 	end)
 	yeeting = false
+end)
+
+VIEW.MouseButton1Click:Connect(function()
+    local target = Target.Text
+
+	if VIEW.Text == 'VIEW' then
+        VIEW.Text = 'UNVIEW'
+        repeat view(target) until VIEW.Text == 'VIEW'
+        game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = lplayer.Character:FindFirstChildWhichIsA('Humanoid')
+    else
+        VIEW.Text = 'VIEW'
+    end
 end)
 
 GOTO.MouseButton1Click:Connect(function()
