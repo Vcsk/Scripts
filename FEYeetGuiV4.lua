@@ -211,7 +211,7 @@ function view(plr)
     wait()
     if game.Players:FindFirstChild(plr) then
         if game.Players[plr].Character then
-            game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = game.Players:FindFirstChild(plr).Character.HumanoidRootPart
+            game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = game.Players:FindFirstChild(plr).Character.Head
         else
             VIEW.Text = 'VIEW'
         end
