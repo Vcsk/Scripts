@@ -48,6 +48,38 @@ function GetPlayer(String)
 	return Found 
 end
 
+local GUIName = "FEYeetGuiV4_"..math.random(100000)
+function ToggleGUI(enabled)
+	local ToggleGui = Instance.new("ScreenGui")
+	local Toggle = Instance.new("TextButton")
+	
+	ToggleGui.Name = "ToggleGui_"..GUIName
+	ToggleGui.Parent = game.CoreGui
+	ToggleGui.Enabled = enabled
+
+	Toggle.Name = "Toggle"
+	Toggle.Parent = ToggleGui
+	Toggle.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+	Toggle.BackgroundTransparency = 0.660
+	Toggle.Position = UDim2.new(0, 0, 0.454706937, 0)
+	Toggle.Size = UDim2.new(0.0650164187, 0, 0.0888099447, 0)
+	Toggle.Font = Enum.Font.SourceSans
+	Toggle.Text = "Toggle"
+	Toggle.TextScaled = true
+	Toggle.TextColor3 = Color3.fromRGB(0, 0, 0)
+	Toggle.TextSize = 24.000
+	Toggle.TextXAlignment = Enum.TextXAlignment.Left
+	Toggle.Active = true
+	Toggle.Draggable = true
+	Toggle.MouseButton1Click:Connect(function()
+		if game.CoreGui[GUIName].Enabled then
+			game.CoreGui[GUIName].Enabled = false
+		else
+			game.CoreGui[GUIName].Enabled = true
+		end
+	end)
+end
+
 function DraggingEnabled(frame, parent)
 	parent = parent or frame
 
@@ -95,8 +127,13 @@ local VIEW = Instance.new("TextButton")
 local GOTO = Instance.new("TextButton")
 
 DraggingEnabled(TopBar, Main)
+if input.TouchEnabled then
+	ToggleGUI(true)
+else
+	ToggleGUI(false)
+end
 
-FEYeetGuiV4.Name = "FEYeetGuiV4"
+FEYeetGuiV4.Name = GUIName
 FEYeetGuiV4.Parent = game:GetService("CoreGui")
 FEYeetGuiV4.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
