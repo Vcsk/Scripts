@@ -72,7 +72,7 @@ local Main = Instance.new("Frame")
 local TopBar = Instance.new("Frame")
 local TextLabel = Instance.new("TextLabel")
 local Frame = Instance.new("Frame")
-local Player = Instance.new("TextBox")
+local Target = Instance.new("TextBox")
 local YEET = Instance.new("TextButton")
 local ULTRAYEET = Instance.new("TextButton")
 local STOPYEETING = Instance.new("TextButton")
@@ -114,18 +114,18 @@ Frame.BorderSizePixel = 0
 Frame.Position = UDim2.new(0, 0, 0.709677398, 0)
 Frame.Size = UDim2.new(0, 389, 0, 9)
 
-Player.Name = "Player"
-Player.Parent = Main
-Player.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
-Player.BorderSizePixel = 0
-Player.Position = UDim2.new(0.205655515, 0, 0.162790686, 0)
-Player.Size = UDim2.new(0, 229, 0, 35)
-Player.Font = Enum.Font.SourceSans
-Player.PlaceholderColor3 = Color3.fromRGB(148, 148, 148)
-Player.PlaceholderText = "Player you wanna yeet/view/goto"
-Player.Text = ""
-Player.TextColor3 = Color3.fromRGB(255, 255, 255)
-Player.TextSize = 14.000
+Target.Name = "Target"
+Target.Parent = Main
+Target.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+Target.BorderSizePixel = 0
+Target.Position = UDim2.new(0.205655515, 0, 0.162790686, 0)
+Target.Size = UDim2.new(0, 229, 0, 35)
+Target.Font = Enum.Font.SourceSans
+Target.PlaceholderColor3 = Color3.fromRGB(148, 148, 148)
+Target.PlaceholderText = "Player you wanna yeet/view/goto"
+Target.Text = ""
+Target.TextColor3 = Color3.fromRGB(255, 255, 255)
+Target.TextSize = 14.000
 
 YEET.Name = "YEET"
 YEET.Parent = Main
@@ -182,8 +182,19 @@ GOTO.Text = "GOTO"
 GOTO.TextColor3 = Color3.fromRGB(255, 255, 255)
 GOTO.TextSize = 14.000
 
+function ShrinkName()
+    Target.FocusLost:connect(function()
+        for i,v in pairs(game.Players:GetChildren()) do
+            if (string.sub(string.lower(v.Name),1,string.len(Target.Text))) == string.lower(Target.Text) or (string.sub(string.lower(v.DisplayName),1,string.len(Target.Text))) == string.lower(Target.Text) then
+                Target.Text = v.Name
+            end
+        end
+    end)
+end
+ShrinkName()
+
 YEET.MouseButton1Click:Connect(function()
-	local target = unpack(GetPlayer(Player.Text)).Character
+	local target = unpack(GetPlayer(Target.Text)).Character
 
 	game:GetService'Players'.LocalPlayer.Character.Humanoid.PlatformStand = true
 	yeeting = true
@@ -194,7 +205,7 @@ YEET.MouseButton1Click:Connect(function()
 end)
 
 ULTRAYEET.MouseButton1Click:Connect(function()
-	local target = unpack(GetPlayer(Player.Text)).Character
+	local target = unpack(GetPlayer(Target.Text)).Character
 
 	game:GetService'Players'.LocalPlayer.Character.Humanoid.PlatformStand = true
 	yeeting = true
@@ -213,7 +224,7 @@ STOPYEETING.MouseButton1Click:Connect(function()
 end)
 
 GOTO.MouseButton1Click:Connect(function()
-	local target = unpack(GetPlayer(Player.Text))
+	local target = unpack(GetPlayer(Target.Text))
 	
 	pcall(function()
 		game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService'Players'[target].Character.HumanoidRootPart.CFrame
