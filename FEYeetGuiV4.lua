@@ -1,4 +1,10 @@
---// Made by !vcsk0#1516 \\--
+--[[
+
+Made by !vcsk0#1516
+Don't claim this as yours or you'll have bad luck
+you can use but credits to me
+
+]]
 
 local input = game:GetService("UserInputService")
 local lplayer = game:GetService('Players').LocalPlayer
