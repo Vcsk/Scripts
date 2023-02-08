@@ -4,6 +4,34 @@ local input = game:GetService("UserInputService")
 local lplayer = game:GetService('Players').LocalPlayer
 
 local yeeting = false
+function GetPlayer(String)
+	local Found = {}
+	local strl = String:lower()
+	if strl == "all" then
+		for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+			table.insert(Found,v)
+		end
+	elseif strl == "others" then
+		for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+			if v.Name ~= lplayer.Name then
+				table.insert(Found,v)
+			end
+		end 
+	elseif strl == "me" then
+		for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+			if v.Name == lplayer.Name then
+				table.insert(Found,v)
+			end
+		end 
+	else
+		for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+			if v.Name:lower():sub(1, #String) == String:lower() then
+				table.insert(Found,v)
+			end
+		end 
+	end
+	return Found 
+end
 
 function DraggingEnabled(frame, parent)
 	parent = parent or frame
@@ -166,25 +194,25 @@ end
 ShrinkName()
 
 YEET.MouseButton1Click:Connect(function()
-	local target = Target.Text
+	local target = unpack(GetPlayer(Target.Text)).Character
 
 	game:GetService'Players'.LocalPlayer.Character.Humanoid.PlatformStand = true
 	yeeting = true
 	local coin = Instance.new('BodyThrust',game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart)
 	coin.Force = Vector3.new(2590,0,2590)
 	coin.Name = "yeetforce"
-	repeat game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = target.Character.Head.CFrame;coin.Location = target.Character.Head.Position game["Run Service"].Heartbeat:wait() until not target.Character.Head or yeeting == false
+	repeat game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = target.Head.CFrame;coin.Location = target.Head.Position game["Run Service"].Heartbeat:wait() until not target.Head or yeeting == false
 end)
 
 ULTRAYEET.MouseButton1Click:Connect(function()
-	local target = Target.Text
+	local target = unpack(GetPlayer(Target.Text)).Character
 
 	game:GetService'Players'.LocalPlayer.Character.Humanoid.PlatformStand = true
 	yeeting = true
 	local coin = Instance.new('BodyThrust',game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart)
 	coin.Force = Vector3.new(9999,9999,9999)
 	coin.Name = "yeetforce"
-	repeat game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = target.Character.Head.CFrame;coin.Location = target.Character.Head.Position game["Run Service"].Heartbeat:wait() until not target.Character.Head or yeeting == false
+	repeat game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = target.Head.CFrame;coin.Location = target.Head.Position game["Run Service"].Heartbeat:wait() until not target.Head or yeeting == false
 end)
 
 STOPYEETING.MouseButton1Click:Connect(function()
