@@ -225,10 +225,10 @@ YEET.MouseButton1Click:Connect(function()
 
 	game:GetService'Players'.LocalPlayer.Character.Humanoid.PlatformStand = true
 	yeeting = true
-	local coin = Instance.new('BodyThrust',game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart)
-	coin.Force = Vector3.new(2590,0,2590)
-	coin.Name = "yeetforce"
-	repeat game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = target.Head.CFrame;coin.Location = target.Head.Position game["Run Service"].Heartbeat:wait() until not target.Head or yeeting == false
+	local Thrust = Instance.new('BodyThrust',game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart)
+	Thrust.Force = Vector3.new(2590,0,2590)
+	Thrust.Name = "yeetforce"
+	repeat game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = target.Head.CFrame;Thrust.Location = target.Head.Position game["Run Service"].Heartbeat:wait() until not target.Head or yeeting == false
 end)
 
 ULTRAYEET.MouseButton1Click:Connect(function()
@@ -236,10 +236,10 @@ ULTRAYEET.MouseButton1Click:Connect(function()
 
 	game:GetService'Players'.LocalPlayer.Character.Humanoid.PlatformStand = true
 	yeeting = true
-	local coin = Instance.new('BodyThrust',game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart)
-	coin.Force = Vector3.new(9999,9999,9999)
-	coin.Name = "yeetforce"
-	repeat game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = target.Head.CFrame;coin.Location = target.Head.Position game["Run Service"].Heartbeat:wait() until not target.Head or yeeting == false
+	local Thrust = Instance.new('BodyThrust',game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart)
+	Thrust.Force = Vector3.new(9999,9999,9999)
+	Thrust.Name = "yeetforce"
+	repeat game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = target.Head.CFrame;Thrust.Location = target.Head.Position game["Run Service"].Heartbeat:wait() until not target.Head or yeeting == false
 end)
 
 STOPYEETING.MouseButton1Click:Connect(function()
