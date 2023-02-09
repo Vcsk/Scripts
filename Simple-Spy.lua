@@ -593,7 +593,7 @@ end
 
 --- Drags gui (so long as mouse is held down)
 function onBarInput(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
         local lastPos = UserInputService.GetMouseLocation(UserInputService)
         local mainPos = Background.AbsolutePosition
         local offset = mainPos - lastPos
