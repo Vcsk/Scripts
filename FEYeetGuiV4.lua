@@ -27,7 +27,7 @@ function notif(title, text, dur)
 end
 
 local yeeting = false
-local function GetPlayer(String)
+function GetPlayer(String)
 	local Found = {}
 	local strl = String:lower()
 	if strl == "all" then
@@ -134,13 +134,6 @@ local STOPYEETING = Instance.new("TextButton")
 local VIEW = Instance.new("TextButton")
 local GOTO = Instance.new("TextButton")
 
-DraggingEnabled(TopBar, Main)
-if getgenv().ToggleGUI == true then
-    ToggleGUI(true)
-else
-	ToggleGUI(false)
-end
-
 FEYeetGuiV4.Name = GUIName
 FEYeetGuiV4.Parent = game:GetService("CoreGui")
 FEYeetGuiV4.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -242,6 +235,13 @@ GOTO.Text = "GOTO"
 GOTO.TextColor3 = Color3.fromRGB(255, 255, 255)
 GOTO.TextSize = 14.000
 
+DraggingEnabled(TopBar, Main)
+if getgenv().ToggleGUI == true then
+    ToggleGUI(true)
+else
+	ToggleGUI(false)
+end
+
 function ShrinkName()
     Target.FocusLost:connect(function()
         for i,v in pairs(game.Players:GetChildren()) do
@@ -329,10 +329,10 @@ VIEW.MouseButton1Click:Connect(function()
 end)
 
 GOTO.MouseButton1Click:Connect(function()
-	local target = GetPlayer(Target.Text)
+	local target = Target.Text
 	
 	pcall(function()
-		game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame
+		lplayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[target].Character.HumanoidRootPart.CFrame
 	end)
 end)
 
