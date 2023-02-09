@@ -134,9 +134,7 @@ local VIEW = Instance.new("TextButton")
 local GOTO = Instance.new("TextButton")
 
 DraggingEnabled(TopBar, Main)
-if input.TouchEnabled then
-	ToggleGUI(true)
-elseif getgenv().ToggleGUI == true then
+if getgenv().ToggleGUI == true then
     ToggleGUI(true)
 else
 	ToggleGUI(false)
