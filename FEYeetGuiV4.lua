@@ -329,10 +329,10 @@ VIEW.MouseButton1Click:Connect(function()
 end)
 
 GOTO.MouseButton1Click:Connect(function()
-	local target = GetPlayer(Target.Text).Character
+	local target = GetPlayer(Target.Text)
 	
 	pcall(function()
-		game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame
+		game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame
 	end)
 end)
 
