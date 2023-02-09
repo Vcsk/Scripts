@@ -88,40 +88,6 @@ function ToggleGUI(enabled)
 	end)
 end
 
-function DraggingEnabled(frame, parent)
-	parent = parent or frame
-
-	local dragging = false
-	local dragInput, mousePos, framePos
-
-	frame.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-			dragging = true
-			mousePos = input.Position
-			framePos = parent.Position
-
-			input.Changed:Connect(function()
-				if input.UserInputState == Enum.UserInputState.End then
-					dragging = false
-				end
-			end)
-		end
-	end)
-
-	frame.InputChanged:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-			dragInput = input
-		end
-	end)
-
-	input.InputChanged:Connect(function(input)
-		if input == dragInput and dragging then
-			local delta = input.Position - mousePos
-			parent.Position  = UDim2.new(framePos.X.Scale, framePos.X.Offset + delta.X, framePos.Y.Scale, framePos.Y.Offset + delta.Y)
-		end
-	end)
-end
-
 local FEYeetGuiV4 = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
 local TopBar = Instance.new("Frame")
@@ -235,7 +201,36 @@ GOTO.Text = "GOTO"
 GOTO.TextColor3 = Color3.fromRGB(255, 255, 255)
 GOTO.TextSize = 14.000
 
-DraggingEnabled(TopBar, Main)
+local dragging = false
+local dragInput, mousePos, framePos
+
+TopBar.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		dragging = true
+		mousePos = input.Position
+		framePos = Main.Position
+
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+			end
+		end)
+	end
+end)
+
+TopBar.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		dragInput = input
+	end
+end)
+
+input.InputChanged:Connect(function(input)
+	if input == dragInput and dragging then
+		local delta = input.Position - mousePos
+		Main.Position  = UDim2.new(framePos.X.Scale, framePos.X.Offset + delta.X, framePos.Y.Scale, framePos.Y.Offset + delta.Y)
+	end
+end)
+
 if getgenv().ToggleGUI == true then
     ToggleGUI(true)
 else
