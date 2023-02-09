@@ -1,16 +1,17 @@
 --[[
 
 Main script:
+--(
 getgenv().ToggleGUI = true -- true/false
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Vcsk/Scripts/main/FEYeetGuiV4.lua"))()
+--)
 
 --// Read
 Made by !vcsk0#1516
 Don't claim this as yours or you'll have bad luck
 Don't steal my code and claim it you make the code
 you can use but credits to me
-Read \\--
 
 ]]
 
