@@ -27,7 +27,7 @@ function notif(title, text, dur)
 end
 
 local yeeting = false
-function GetPlayer(String)
+local function GetPlayer(String)
 	local Found = {}
 	local strl = String:lower()
 	if strl == "all" then
@@ -267,25 +267,45 @@ function view(plr)
 end
 
 YEET.MouseButton1Click:Connect(function()
-	local target = unpack(GetPlayer(Target.Text)).Character
-
-	game:GetService'Players'.LocalPlayer.Character.Humanoid.PlatformStand = true
-	yeeting = true
-	local Thrust = Instance.new('BodyThrust',game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart)
-	Thrust.Force = Vector3.new(2590,0,2590)
-	Thrust.Name = "yeetforce"
-	repeat game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = target.Head.CFrame;Thrust.Location = target.Head.Position game["Run Service"].Heartbeat:wait() until not target.Head or yeeting == false
+    local target = GetPlayer(Target.Text)
+    
+    if target[1] then
+        target = target[1]
+        
+        game:GetService'Players'.LocalPlayer.Character.Humanoid.PlatformStand = true
+        yeeting = true
+        local Thrust = Instance.new('BodyThrust',game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart)
+        Thrust.Force = Vector3.new(2590,0,2590)
+        Thrust.Name = "yeetforce"
+        repeat
+            game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame
+            Thrust.Location = target.Character.HumanoidRootPart.Position
+            game["Run Service"].Heartbeat:wait()
+        until not target.Character.HumanoidRootPart or yeeting == false
+    else
+        notif("FE Yeet Gui V4","Invalid Player!",5)
+    end
 end)
 
 ULTRAYEET.MouseButton1Click:Connect(function()
-	local target = unpack(GetPlayer(Target.Text)).Character
-
-	game:GetService'Players'.LocalPlayer.Character.Humanoid.PlatformStand = true
-	yeeting = true
-	local Thrust = Instance.new('BodyThrust',game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart)
-	Thrust.Force = Vector3.new(9999,9999,9999)
-	Thrust.Name = "yeetforce"
-	repeat game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = target.Head.CFrame;Thrust.Location = target.Head.Position game["Run Service"].Heartbeat:wait() until not target.Head or yeeting == false
+    local target = GetPlayer(Target.Text)
+    
+    if target[1] then
+        target = target[1]
+        
+        game:GetService'Players'.LocalPlayer.Character.Humanoid.PlatformStand = true
+        yeeting = true
+        local Thrust = Instance.new('BodyThrust',game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart)
+        Thrust.Force = Vector3.new(9999,9999,9999)
+        Thrust.Name = "yeetforce"
+        repeat
+            game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame
+            Thrust.Location = target.Character.HumanoidRootPart.Position
+            game["Run Service"].Heartbeat:wait()
+        until not target.Character.HumanoidRootPart or yeeting == false
+    else
+        notif("FE Yeet Gui V4","Invalid Player!",5)
+    end
 end)
 
 STOPYEETING.MouseButton1Click:Connect(function()
@@ -309,7 +329,7 @@ VIEW.MouseButton1Click:Connect(function()
 end)
 
 GOTO.MouseButton1Click:Connect(function()
-	local target = unpack(GetPlayer(Target.Text)).Character
+	local target = GetPlayer(Target.Text).Character
 	
 	pcall(function()
 		game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame
